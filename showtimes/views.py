@@ -1,3 +1,14 @@
-from django.shortcuts import render
+from rest_framework import generics
 
-# Create your views here.
+from .models import Cinema
+from .serializers import CinemaSerializer
+
+
+class CinemaListView(generics.ListCreateAPIView):
+    queryset = Cinema.objects.all()
+    serializer_class = CinemaSerializer
+
+
+class CinemaView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Cinema.objects.all()
+    serializer_class = CinemaSerializer
