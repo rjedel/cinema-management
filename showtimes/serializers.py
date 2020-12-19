@@ -5,7 +5,7 @@ from .models import Cinema
 
 
 class CinemaSerializer(serializers.ModelSerializer):
-    movies = serializers.HyperlinkedRelatedField(many=True, view_name='movie-detail', queryset=Movie.objects.all())
+    movies = serializers.HyperlinkedRelatedField(many=True, view_name='movie-detail', read_only=True)
 
     class Meta:
         model = Cinema
