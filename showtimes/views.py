@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from .models import Cinema
-from .serializers import CinemaSerializer
+from .models import Cinema, Screening
+from .serializers import CinemaSerializer, ScreeningSerializer
 
 
 class CinemaListView(generics.ListCreateAPIView):
@@ -12,3 +12,8 @@ class CinemaListView(generics.ListCreateAPIView):
 class CinemaView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cinema.objects.all()
     serializer_class = CinemaSerializer
+
+
+class ScreeningListView(generics.ListCreateAPIView):
+    queryset = Screening.objects.all()
+    serializer_class = ScreeningSerializer
