@@ -7,6 +7,7 @@ from movielist.models import Movie
 from showtimes.models import Screening, Cinema
 
 faker = Faker("pl_PL")
+
 TZ = pytz.timezone(TIME_ZONE)
 
 
