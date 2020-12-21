@@ -94,6 +94,15 @@ def test_get_screening_list(client, set_up):
 
 
 @pytest.mark.django_db
+def test_get_filtered_screening_list(client, set_up):
+    cinema_city = Cinema.objects.first().city
+    filtered_screening = Screening.objects.filter(cinema__city__icontains=cinema_city).count()
+    response = client.get(f"/screenings/?cinema__city={cinema_city}", {}, format='json')
+    assert response.status_code == 200
+    assert filtered_screening == len(response.data)
+
+
+@pytest.mark.django_db
 def test_get_screening_detail(client, set_up):
     screening = Screening.objects.first()
     response = client.get(f"/screenings/{screening.id}/", {}, format='json')

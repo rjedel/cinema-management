@@ -15,8 +15,14 @@ class CinemaView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ScreeningListView(generics.ListCreateAPIView):
-    queryset = Screening.objects.all()
     serializer_class = ScreeningSerializer
+
+    def get_queryset(self):
+        queryset = Screening.objects.all()
+        cinema_city = self.request.query_params.get('cinema__city')
+        if cinema_city is not None:
+            queryset = queryset.filter(cinema__city__icontains=cinema_city)
+        return queryset
 
 
 class ScreeningView(generics.RetrieveUpdateDestroyAPIView):
