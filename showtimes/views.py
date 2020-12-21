@@ -1,3 +1,4 @@
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 
 from .models import Cinema, Screening
@@ -16,6 +17,8 @@ class CinemaView(generics.RetrieveUpdateDestroyAPIView):
 
 class ScreeningListView(generics.ListCreateAPIView):
     serializer_class = ScreeningSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['movie__title']
 
     def get_queryset(self):
         queryset = Screening.objects.all()
