@@ -1,6 +1,6 @@
 # Cinema Management
 
-This is a Web APIs application for the management of the cinema. The **Django REST framework** was used to build it.
+WebAPI that allows you to control what movies are screened in the cinema chain. This project has implemented **REST API** backend, **Django REST framework** was used.
 
 ### Tests:
 
